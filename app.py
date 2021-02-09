@@ -11,7 +11,8 @@ ALLOWED_EXTENSIONS = set(['jpg', 'jpeg', 'png'])
 IMAGE_SIZE = (224, 224)
 UPLOAD_FOLDER = 'uploads'
 vgg16 = load_model('model/model_cat_dog.h5')
-
+LABEL = ''
+IMG_SOURCE = 'file://null'
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -32,11 +33,17 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route("/")
 def template_test():
-    return render_template('index.html', label='', imagesource='file://null')
+    global LABEL
+    global IMG_SOURCE
+
+    return render_template('index.html', label=LABEL, imagesource=IMG_SOURCE)
 
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
+    global LABEL
+    global IMG_SOURCE
+    
     if request.method == 'POST':
         file = request.files['file']
         
@@ -44,9 +51,13 @@ def upload_file():
             filename = secure_filename(file.filename)
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(file_path)
-            output = predict(file_path)
-    return render_template("index.html", label=output, imagesource=file_path)
-
+            # output = predict(file_path)
+            
+            LABEL = "test"
+            IMG_SOURCE = file_path
+    
+    # return render_template("index.html", label=output, imagesource=file_path)
+    return redirect(url_for('template_test'))
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
