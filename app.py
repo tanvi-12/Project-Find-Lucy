@@ -20,12 +20,14 @@ def allowed_file(filename):
 
 
 def predict(file):
+   
     img  = load_img(file, target_size=IMAGE_SIZE)
     img = img_to_array(img)/255.0
     img = np.expand_dims(img, axis=0)
     probs = vgg16.predict(img)[0]
-    output = {'Cat:': probs[0], 'Dog': probs[1]}
+    output = {'Cat:': 1 - float(probs), 'Dog': float(probs)}
     return output
+    #return probs
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -33,6 +35,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route("/")
 def template_test():
+    
     global LABEL
     global IMG_SOURCE
 
@@ -41,6 +44,7 @@ def template_test():
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
+    
     global LABEL
     global IMG_SOURCE
     
@@ -51,16 +55,18 @@ def upload_file():
             filename = secure_filename(file.filename)
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(file_path)
-            # output = predict(file_path)
+            output = predict(file_path)
             
-            LABEL = "test"
+            LABEL = output
             IMG_SOURCE = file_path
     
     # return render_template("index.html", label=output, imagesource=file_path)
     return redirect(url_for('template_test'))
+    #return redirect('/')
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
+    
     return send_from_directory(app.config['UPLOAD_FOLDER'],
                                filename)
 
