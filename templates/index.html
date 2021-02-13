@@ -39,34 +39,68 @@
         </div>
       </div>
       <form action="" method=post enctype=multipart/form-data>
-        <input type=file name=file>
-        <input type=submit value=Upload>
-    </form>
+        <input style ="color:#2C7AAF; border: 2px solid white; border-radius: 2px; margin: 5px;" type=file name=file>
+        <input style ="background-color:#2C7AAF; color: white; border: 2px solid white; border-radius: 2px; margin: 5px;" type=submit value=Upload>
+      </form>
     </div>
-    <p style="margin-bottom:2cm;"></p>
-    <div class="row" id="box">
+    
+
+   <div class="left">
+      <div class="container content">
+         <div class ="col-md-8">
+        
+          <p style="margin-bottom:2cm;"></p>
+    <div class = "col-md-7">
+    <div class="container-fluid" id="box">
+    <div class = "row">
         <div class="col-lg-4">
-          <div class="page-header">
-            <h3 id="tables">Result</h3>
-          </div>
-          <div class="bs-component">
-            <table class="table table-hover">
-                <tr class="table-active">
-                  <th scope="col">Image</th>
-                  <th scope="col">Predict</th>
-                </tr>
-                <tr>
-                    <th scope="row"> <img width="224" height="224" src="{{imagesource}}" /> </th>
-                    <td> {{label}} </td>
+            <div class="page-header">
+              <h3 id="tables"><b>Result</b></h3>
+            </div>
+            <div class="bs-component">
+              <table class="table table-hover">
+                  <tr class="table-active">
+                    <th scope="col">Image</th>
+                    <th scope="col">Predict</th>
                   </tr>
-            </table> 
+                  <tr>
+                      <th scope="row"> <img width="224" height="224" src="{{imagesource}}" /> </th>
+                      <td> {{label}} </td>
+                    </tr>
+              </table> 
+            </div>
+
         </div>
+    </div>
+    </div>
+    </div>
+
+         </div>
       </div>
-      <style>
-      #box{
-        background-color: #EAC2b1 
+   </div>
+
+   <div class="right">
+   <div id = "log" class="col-md-4">
+      <div class="col-md-12"></div>
+         <h2>Plot</h2>
+      </div>   
+   </div>
+   </div>
+
+   <style>
+   .right { float: right;  margin: 0 1.5%; width: 30%;}
+   .left { float: left; margin: 0 1.5%; width: 63%;}
+   #box{
+        background-color: #EAC2b1;
+        color:#2C7AAF;
       }
-      </style>
+   #log{
+        background-color: #90C6FA;
+        color:#2C7AAF;
+    }
+
+   </style>
+
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="{{url_for('static', filename='app.js')}}"></script>
 </body>
