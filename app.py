@@ -1,6 +1,7 @@
 import os
 from flask import Flask, request, redirect, url_for, send_from_directory, render_template
 from keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array
+from tensorflow.keras.preprocessing import image
 from keras.models import Sequential, load_model
 from werkzeug.utils import secure_filename
 from tensorflow.keras.models import Sequential
@@ -19,7 +20,7 @@ IMG_SOURCE = 'file://null'
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
-
+  
 
 def predict(file):
    
@@ -38,7 +39,14 @@ def predict(file):
         class_ ="Cat"
     elif classes[0] == 1:
         class_ ="Dog"
-    output = class_
+    #Percentage
+    img = image.load_img(file)
+    img_sm = image.load_img(file,target_size=(224,224))
+    img_arr = image.img_to_array(img_sm)
+    img_arr = img_arr.reshape((1,224,224,3))
+    cat_score,dog_score = model.predict(img_arr).reshape((2,))
+    #output
+    output = class_, "Cat : " + str(round(cat_score*100,2))+"%", "Dog : " + str(round(dog_score*100,2))+"%"
     return output
 
 app = Flask(__name__)
