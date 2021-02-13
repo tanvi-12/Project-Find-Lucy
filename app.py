@@ -3,14 +3,16 @@ from flask import Flask, request, redirect, url_for, send_from_directory, render
 from keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array
 from keras.models import Sequential, load_model
 from werkzeug.utils import secure_filename
+from tensorflow.keras.models import Sequential
 import numpy as np
-
-
+from keras.models import load_model
+from cv2 import cv2
+import numpy as np
 
 ALLOWED_EXTENSIONS = set(['jpg', 'jpeg', 'png'])
 IMAGE_SIZE = (224, 224)
 UPLOAD_FOLDER = 'uploads'
-vgg16 = load_model('model/model_cat_dog.h5')
+#vgg16 = load_model('model/model_cat_dog.h5')
 LABEL = ''
 IMG_SOURCE = 'file://null'
 
@@ -21,13 +23,23 @@ def allowed_file(filename):
 
 def predict(file):
    
-    img  = load_img(file, target_size=IMAGE_SIZE)
-    img = img_to_array(img)/255.0
-    img = np.expand_dims(img, axis=0)
-    probs = vgg16.predict(img)[0]
-    output = {'Cat:': 1 - float(probs), 'Dog': float(probs)}
+    model = load_model('model/model_cat_dog.h5')
+    model.compile(loss='binary_crossentropy',
+                optimizer='rmsprop',
+                metrics=['accuracy'])
+    #Load image
+    img = cv2.imread(file)
+    img = cv2.resize(img,(224, 224))
+    img = np.reshape(img,[1,224, 224,3])
+
+    #Predict if it cat or dog
+    classes = model.predict_classes(img)
+    if classes[0] == 0:
+        class_ ="Cat"
+    elif classes[0] == 1:
+        class_ ="Dog"
+    output = class_
     return output
-    #return probs
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
