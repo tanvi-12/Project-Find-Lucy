@@ -1,5 +1,6 @@
 import os
 from flask import Flask, request, redirect, url_for, send_from_directory, render_template
+import json
 from flask import jsonify
 from flask import Response,json
 from flask_cors import CORS, cross_origin
@@ -97,6 +98,17 @@ def template_test():
 
     return render_template('index.html', label=LABEL, imagesource=IMG_SOURCE)
 
+@app.route("/about")
+def about_funct():
+
+    return render_template('about.html')
+
+@app.route("/model")
+def model_funct():
+
+    return render_template('model.html')
+
+
 @app.route("/predictions", methods=['GET'])
 def get_predictions():
     
@@ -112,8 +124,8 @@ def get_predictions():
         
         data.append(new)
     
-    return jsonify(data)
-
+    # return jsonify(data)
+    return json.dumps(data)
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
@@ -142,6 +154,8 @@ def uploaded_file(filename):
     
     return send_from_directory(app.config['UPLOAD_FOLDER'],
                                filename)
+
+
 
 if __name__ == "__main__":
     app.run(debug=False, threaded=False)
