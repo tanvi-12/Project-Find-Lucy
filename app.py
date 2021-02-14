@@ -1,5 +1,11 @@
 import os
 from flask import Flask, request, redirect, url_for, send_from_directory, render_template
+from flask import jsonify
+from flask import Response,json
+from flask_cors import CORS, cross_origin
+from pymongo import MongoClient
+from flask_pymongo import PyMongo
+
 from keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array
 from tensorflow.keras.preprocessing import image
 from keras.models import Sequential, load_model
@@ -9,6 +15,23 @@ import numpy as np
 from keras.models import load_model
 from cv2 import cv2
 import numpy as np
+
+app = Flask(__name__)
+
+#################################################
+# Database Setup / flask_pymongo
+#################################################
+dbname = 'Final_project'
+# client = MongoClient(f"mongodb+srv://TanZee:MonashBootcamp@cluster0.at4ok.mongodb.net/{dbname}?retryWrites=true&w=majority")
+# lucy_db = client.get_database('Final_project')
+# prediction_collection = lucy_db.predictions.find({},{'_id': False})
+# prediction_collection = mongo.db.mars_collection.find_one()
+
+mongo = PyMongo(app, uri=f"mongodb+srv://TanZee:MonashBootcamp@cluster0.at4ok.mongodb.net/{dbname}?retryWrites=true&w=majority")
+prediction_collection = mongo.db.predictions
+
+
+############################################33
 
 ALLOWED_EXTENSIONS = set(['jpg', 'jpeg', 'png'])
 IMAGE_SIZE = (224, 224)
@@ -39,19 +62,32 @@ def predict(file):
         class_ ="Cat"
     elif classes[0] == 1:
         class_ ="Dog"
+    
     #Percentage
     img = image.load_img(file)
     img_sm = image.load_img(file,target_size=(224,224))
     img_arr = image.img_to_array(img_sm)
     img_arr = img_arr.reshape((1,224,224,3))
     cat_score,dog_score = model.predict(img_arr).reshape((2,))
-    #output
-    output = class_, "Cat : " + str(round(cat_score*100,2))+"%", "Dog : " + str(round(dog_score*100,2))+"%"
+    
+    # output = class_, "Cat : " + str(round(cat_score*100,2))+"%", "Dog : " + str(round(dog_score*100,2))+"%"
+    output = {"class": class_, "Cat" : (round(cat_score*100,2)), "Dog": round(dog_score*100,2)}
+    
+    # prediction_collection.insert_many(output)
+    prediction_collection.insert(output)
+    
+    # print("*******************************************************************")
+    # print(output)
+    # print("*******************************************************************")
+
     return output
 
-app = Flask(__name__)
+
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+#################################################
+# Flask Routes
+#################################################
 
 @app.route("/")
 def template_test():
@@ -60,6 +96,23 @@ def template_test():
     global IMG_SOURCE
 
     return render_template('index.html', label=LABEL, imagesource=IMG_SOURCE)
+
+@app.route("/predictions", methods=['GET'])
+def get_predictions():
+    
+    destination_data = mongo.db.predictions.find()
+    
+    data = []
+    for dictionary in destination_data:   
+        
+        new = {}
+        new["class_item"] = dictionary["class"]
+        new["dog"] = dictionary["Dog"]
+        new["cat"] = dictionary["Cat"] 
+        
+        data.append(new)
+    
+    return jsonify(data)
 
 
 @app.route('/', methods=['GET', 'POST'])
