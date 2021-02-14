@@ -19,19 +19,13 @@ import numpy as np
 app = Flask(__name__)
 
 #################################################
-# Database Setup
+# Database Setup / flask_pymongo
 #################################################
 dbname = 'Final_project'
 # client = MongoClient(f"mongodb+srv://TanZee:MonashBootcamp@cluster0.at4ok.mongodb.net/{dbname}?retryWrites=true&w=majority")
 # lucy_db = client.get_database('Final_project')
 # prediction_collection = lucy_db.predictions.find({},{'_id': False})
 # prediction_collection = mongo.db.mars_collection.find_one()
-# mongo = PyMongo(app, uri=
-
-#######################
-# flask_pymongo
-########################
-
 
 mongo = PyMongo(app, uri=f"mongodb+srv://TanZee:MonashBootcamp@cluster0.at4ok.mongodb.net/{dbname}?retryWrites=true&w=majority")
 prediction_collection = mongo.db.predictions
