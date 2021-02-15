@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Finding Lucy</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+    <script src="https://d3js.org/d3.v5.min.js"></script>      
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js"></script>      
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>      
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.0.0/mdb.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="shortcut icon" href="#">
 </head>
@@ -20,13 +23,13 @@
   <nav  class="navbar navbar-expand-lg navbar-light bg-light" style="background: #90C6FA">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand active text-white " style = "color:white" href="index.html">Finding Lucy</a>
+        <a class="navbar-brand active text-white " style = "color:white" href="/">Finding Lucy</a>
       </div>
       <ul class="nav navbar-nav navbar-right" style = "color:#2C7AAF;font-weight: bold;">
-        <li class="active"><a href="#index.html">Home</a></li>
-        <li><a class="nav-link" href="about.html">About<span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="/">Home</a></li>
+        <li><a class="nav-link" href="/about">About<span class="sr-only">(current)</span></a></li>
         <li><a class="nav-link" href="https://github.com/tanvi-12/Project-Find-Lucy">Github<span class="sr-only">(current)</span></a></li>
-        <li><a class="nav-link" href="model.html">Model<span class="sr-only">(current)</span></a></li>
+        <li><a class="nav-link" href="/model">Model<span class="sr-only">(current)</span></a></li>
       </ul>
     </div>
   </nav>
@@ -100,14 +103,10 @@
    </style>
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="{{url_for('static', filename='app.js')}}"></script>
+
 <!-- scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
 <!-- d3 JavaScript -->
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="https://d3js.org/d3-interpolate.v2.min.js"></script>
-<script src="https://d3js.org/d3.v5.min.js"></script>
 
 <!-- Z' logics script-->
 <script src="{{url_for('static', filename='js/logic.js')}}"></script>  
