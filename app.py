@@ -39,7 +39,7 @@ IMAGE_SIZE = (224, 224)
 UPLOAD_FOLDER = 'uploads'
 #vgg16 = load_model('model/model_cat_dog.h5')
 LABEL = ''
-IMG_SOURCE = 'file://null'
+IMG_SOURCE = "img/base.png"
 
 def allowed_file(filename):
     return '.' in filename and \
