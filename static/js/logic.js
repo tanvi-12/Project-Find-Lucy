@@ -75,6 +75,8 @@ function catsVSdogsPlot(cats_array, dogs_array, all_data){
             title:'Percentage (%)',
         },
         barmode: 'stack',
+        plot_bgcolor:"#EAC2b1",
+        paper_bgcolor:"#EAC2b1"
     };
 
     Plotly.newPlot("catsDogsPlot", data, layout); 
