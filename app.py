@@ -6,7 +6,6 @@ from flask import Response,json
 from flask_cors import CORS, cross_origin
 from pymongo import MongoClient
 from flask_pymongo import PyMongo
-
 from keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array
 from tensorflow.keras.preprocessing import image
 from keras.models import Sequential, load_model
@@ -39,7 +38,7 @@ IMAGE_SIZE = (224, 224)
 UPLOAD_FOLDER = 'uploads'
 #vgg16 = load_model('model/model_cat_dog.h5')
 LABEL = ''
-IMG_SOURCE = 'file://null'
+IMG_SOURCE = "/static/img/funny.gif"
 
 def allowed_file(filename):
     return '.' in filename and \
