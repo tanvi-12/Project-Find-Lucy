@@ -88,8 +88,8 @@
       </div>
       <ul class="nav navbar-nav navbar-right" style = "float: right;font-size:medium;color:#2C7AAF;font-weight: bold;">
         <li class="nav-link"><a href="/">Home</a></li>
-        <li><a class="nav-link" href="/log">Log<span class="sr-only">(current)</span></a></li>
-        <li><a class="active" href="/about">About<span class="sr-only">(current)</span></a></li>
+        <li><a class="active" href="/log">Log<span class="sr-only">(current)</span></a></li>
+        <li><a class="nav-link" href="/about">About<span class="sr-only">(current)</span></a></li>
         <li><a class="nav-link" href="https://github.com/tanvi-12/Project-Find-Lucy">Github<span class="sr-only">(current)</span></a></li>
         <li><a class="nav-link" href="/model">Model<span class="sr-only">(current)</span></a></li>
       </ul>
@@ -98,6 +98,8 @@
 
   <div class="container content">
     <div class = "row">
+
+      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search">
       
       <div style="float: left; background: #EAC2b1" class="col-md-12">
         <div class ="col-md-12">
@@ -116,7 +118,22 @@
       </div>   
     </div>
   </div>  
-   
+
+  <style>
+  input {
+  border: 2px;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: black;
+  background-color:  #90C6FA;
+  text-align: center;
+  cursor: pointer;
+  width: 10%;
+  margin: auto;
+}
+
+  </style>
 
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
