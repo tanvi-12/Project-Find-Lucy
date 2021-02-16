@@ -1,1 +1,19 @@
-#tables
+.right { float: right;  margin: 0 1.5%; width: 30%;}
+.left { float: left; margin: 0 1.5%; width: 63%;}
+#box {
+  background-color: #EAC2b1;
+  color:#2C7AAF;
+}
+.plot-container{
+  background-color: #EAC2b1;
+  color:#2C7AAF;
+}
+/* #log {
+  background-color: #90C6FA;
+  color:#2C7AAF;
+} */
+
+.card{
+  background-color: #EAC2b1 !important;
+  color:#2C7AAF;
+}

@@ -29,18 +29,6 @@ function init(){
         buildGauge(mean(cat_accuracy), "cat_avg_accuracy");
         buildGauge(mean(dog_accuracy), "dog_avg_accuracy");
 
-        ////              Log  Table                   \\\\
-        var tbody = d3.selectAll("#table-log").select("tbody");
-        
-        data.forEach((aDictionary) => {
-            var row = tbody.append("tr");
-            Object.entries(aDictionary).forEach(([key, value]) => {
-              var cell = row.append("td");
-              cell.text(value);
-            });
-        });
-
-
     })  
 }
 
@@ -82,18 +70,11 @@ function catsVSdogsPlot(cats_array, dogs_array, all_data){
     var data = [trace1];
 
     var layout = {
-        title: "Y Axis Represent Ratio (%)",
         barmode: 'stack',
-
-        // title: {
-        //     text: 'Ratio & Count',
-        // }
-        // yaxis: {
-        //     title: {
-        //         text:'Percentage (%)',
-        //     } 
-        // },
-        // barmode: 'stack',
+        yaxis: {
+            title:'Percentage (%)',
+        },
+        barmode: 'stack',
     };
 
     Plotly.newPlot("catsDogsPlot", data, layout); 
