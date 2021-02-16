@@ -102,6 +102,11 @@ def about_funct():
 
     return render_template('about.html')
 
+@app.route("/log")
+def log_funct():
+
+    return render_template('log.html')
+
 @app.route("/model")
 def model_funct():
 
