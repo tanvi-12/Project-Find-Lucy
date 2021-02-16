@@ -38,69 +38,59 @@
       </ul>
     </div>
   </nav>
-
-  <div class="page-header" id="banner">
+  <div class="container">
+    <!-- Uploads --> 
+    <div class="col-md-12 jumbotron text-center">
+      <div class="row">  
+        <h2>Cats vs Dogs Image Classifier</h2>
+        <div class="row"> 
+          <p class="lead">Upload the image and to find out is it a<b>Cat</b> or <b>Dog</b></p>
+        </div>
+      </div> 
+      <div class="row"> 
+        <form action="" method=post enctype=multipart/form-data>
+          <input style ="color:#2C7AAF; border: 2px solid white; border-radius: 2px; margin: 5px;" type=file name=file>
+          <input style ="background-color:#2C7AAF; color: white; border: 2px solid white; border-radius: 2px; margin: 5px;" type=submit value=Upload>
+        </form>
+      </div> 
+    </div>  
+    <!-- Output Section -->
     <div class="row">
-      <div class="col-lg-8 col-md-7 col-sm-6">
-        <h1>Cats vs Dogs Image Recognition Server</h1>
-        <h3></h3>
-        <p class="lead">Upload the image and to find out is it a (<b>Cat</b> or <b>Dog</b>)?</p>
-      </div>
-    </div>
-    <form action="" method=post enctype=multipart/form-data>
-      <input style ="color:#2C7AAF; border: 2px solid white; border-radius: 2px; margin: 5px;" type=file name=file>
-      <input style ="background-color:#2C7AAF; color: white; border: 2px solid white; border-radius: 2px; margin: 5px;" type=submit value=Upload>
-    </form>
-  </div>
-    
-  <div class="row">
-    <div class="left">
-      <div class="container content">
-        <div class ="col-md-6">
-          <p style="margin-bottom:2cm;"></p>
-          <div class = "col-md-7">
-            <div class="container-fluid" id="box">
-              <div class = "row">
-                <div class="col-lg-4">
-                  <div class="page-header">
-                    <h3 id="tables"><b>Result</b></h3>
-                  </div>
-                  <div class="bs-component">
-                    <table class="table table-hover">
-                      <tr class="table-active">
-                        <th scope="col">Image</th>
-                        <th scope="col">Predict</th>
-                      </tr>
-                      <tr>
-                        <th scope="row"> <img width="224" height="224" src="{{imagesource}}" /> </th>
-                          <td> {{label}} </td>
-                      </tr>
-                    </table> 
-                  </div>
-                </div>
-              </div>
-            </div>
+      <!-- <div class="container content"> -->
+      <div class = "col-md-6">
+        <div class="container-fluid" id="box">
+          <div class="page-header">
+            <h3 id="tables"><b>Output</b></h3>
+          </div>
+          <div class="bs-component">
+            <table class="table table-hover">
+              <tr class="table-active">
+                <th scope="col">Image</th>
+                <th scope="col">Classification</th>
+              </tr>
+              <tr>
+                <th scope="row"> <img width="224" height="224" src="{{imagesource}}" /> </th>
+                  <td> {{label}} </td>
+              </tr>
+            </table> 
           </div>
         </div>
       </div>
-    </div>  
-    <div class="right">
+      <!-- </div>  -->
       <div id = "log" class="col-md-6">
         <div class="card w-100">
           <h2 class="card-text">Cats & Dogs Log Stats</h2>
           <!-- <div width="600" height="500" id = "catsDogsPlot"></div> -->
-          <div class="card-img-bottom" id="catsDogsPlot" width="800" height="500"> </div>
+          <div class="card-img-bottom" id="catsDogsPlot" width="300" height="300"> </div>
         </div>  
       </div>   
     </div>
-  </div>
-  <hr>
- 
-  <div class="container">  
+    <hr>
+    <!-- Gauge section -->
     <div class="row">
       <div class="col-md-6">
         <div class="card w-100">
-          <h2 class="card-text">Cat Classification Model Avg Accuracy</h2>  
+          <h2 class="card-text" style = "text-align: center">Cat Classification Model Avg Accuracy</h2>  
           <div class="card-img-bottom" id="cat_avg_accuracy" width="300" height="300"> </div>
         </div>
       </div>
@@ -111,8 +101,7 @@
         </div>
       </div>
     </div>
-  </div> 
-  <hr>
+  </div>>
 
   
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

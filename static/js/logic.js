@@ -163,6 +163,8 @@ function buildGauge(avg_accuracy, div_id) {
           }
         }
       ],
+      plot_bgcolor:"#EAC2b1",
+      paper_bgcolor:"#EAC2b1",
     //   title: "<b>Belly Button Washing Frequency</b> <br> Scrubs per Week",
       height: 500,
       width: 500,
