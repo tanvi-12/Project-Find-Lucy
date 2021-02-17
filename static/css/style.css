@@ -1,10 +1,27 @@
+.jumbotron {
+  background-image: url('pic4.jpg');
+  /* background-image: url("https://giphy.com/gifs/kittens-eyebleach-bush-S7MEQYLUEgbW8/fullscreen"); */
+  /* background-image: url('giphy2.webp'); */
+  background-size: cover;
+  height: 400px;
+  margin-top: 10px;
+  color: #0a4b77 !important;
+}
+
+
 .card{
   background-color: #EAC2b1 !important;
   color:#2C7AAF;
+  content: center;
+
 }
 
 /* .right { float: right;  margin: 0 1.5%; width: 30%;}
 .left { float: left; margin: 0 1.5%; width: 63%;} */
+
+#jumbo-text {
+  color: #f8e4db(27, 42, 107);
+}
 
 #box {
   background-color: #EAC2b1;
@@ -18,7 +35,20 @@ h2 {
   margin-right: auto;
 }
 
+h3 {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 25px !important
+}
+
+.card-text {
+  text-align: center;
+  font-size: 25px !important;
+}
+
 form {
   margin-left: auto;
   margin-right: auto;
 }
+
+

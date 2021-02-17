@@ -70,11 +70,11 @@ def predict(file):
     img_arr = img_arr.reshape((1,224,224,3))
     cat_score,dog_score = model.predict(img_arr).reshape((2,))
     
-    # output = class_, "Cat : " + str(round(cat_score*100,2))+"%", "Dog : " + str(round(dog_score*100,2))+"%"
-    output = {"class": class_, "Cat" : (round(cat_score*100,2)), "Dog": round(dog_score*100,2)}
+    output = class_, "Cat : " + str(round(cat_score*100,2))+"%", "Dog : " + str(round(dog_score*100,2))+"%"
+    output2 = {"class": class_, "Cat" : (round(cat_score*100,2)), "Dog": round(dog_score*100,2)}
     
     # prediction_collection.insert_many(output)
-    prediction_collection.insert(output)
+    prediction_collection.insert(output2)
     
     # print("*******************************************************************")
     # print(output)

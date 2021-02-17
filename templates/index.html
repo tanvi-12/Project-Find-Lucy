@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Finding Lucy</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  -->
     <script src="https://d3js.org/d3.v5.min.js"></script>      
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js"></script>      
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>      
@@ -27,7 +27,7 @@
   <nav  class="navbar navbar-expand-lg navbar-light" style="background: #90C6FA">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="nav navbar-nav navbar-left" style = "font-size:xx-large;color:white" href="/">Finding Lucy</a>
+        <a class="nav navbar-nav navbar-left" style = "font-size:xx-large;color:white" href="/">Finding Lucy: an image classifier</a>
       </div>
       <ul class="nav navbar-nav navbar-right" style = "float: right;font-size:medium;color:#2C7AAF;font-weight: bold;">
         <li class="active"><a href="/">Home</a></li>
@@ -40,12 +40,12 @@
   </nav>
   <div class="container">
     <!-- Uploads --> 
-    <div class="col-md-12 jumbotron text-center">
+    <div class="jumbotron">
       <div class="row">  
-        <h2>Cats vs Dogs Image Classifier</h2>
-        <div class="row"> 
-          <p class="lead">Upload the image and to find out is it a<b>Cat</b> or <b>Dog</b></p>
-        </div>
+        <h2 id = "jumbo-text" style ="color: #f8e4db(27, 42, 107);">We are here to find your pet</h2>
+      </div>
+      <div class="row">
+        <h3>Upload an image of your lost cat or dog</h3>
       </div> 
       <div class="row"> 
         <form action="" method=post enctype=multipart/form-data>
@@ -60,9 +60,8 @@
       <div class = "col-md-6">
         <div class="container-fluid" id="box">
           <div class="page-header">
-            <h3 id="tables"><b>Output</b></h3>
+            <h3>Output</h3>
           </div>
-          <div class="bs-component">
             <table class="table table-hover">
               <tr class="table-active">
                 <th scope="col">Image</th>
@@ -73,13 +72,13 @@
                   <td> {{label}} </td>
               </tr>
             </table> 
-          </div>
+  
         </div>
       </div>
       <!-- </div>  -->
       <div id = "log" class="col-md-6">
         <div class="card w-100">
-          <h2 class="card-text">Cats & Dogs Log Stats</h2>
+          <h3 class="card-text">Cats & Dogs Log Stats</h3>
           <!-- <div width="600" height="500" id = "catsDogsPlot"></div> -->
           <div class="card-img-bottom" id="catsDogsPlot" width="300" height="300"> </div>
         </div>  
@@ -90,13 +89,13 @@
     <div class="row">
       <div class="col-md-6">
         <div class="card w-100">
-          <h2 class="card-text" style = "text-align: center">Cat Classification Model Avg Accuracy</h2>  
+          <h3 class="card-text" style = "text-align: center">Cat Classification Model Avg Accuracy</h3>  
           <div class="card-img-bottom" id="cat_avg_accuracy" width="300" height="300"> </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card w-100">
-          <h2 class="card-text">Dog Classification Model Avg Accuracy</h2>  
+          <h3 class="card-text" >Dog Classification Model Avg Accuracy</h3>  
           <div class="card-img-bottom" id="dog_avg_accuracy" width="300" height="300"> </div>
         </div>
       </div>
