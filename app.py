@@ -3,8 +3,8 @@ from flask import Flask, request, redirect, url_for, send_from_directory, render
 import json
 from flask import jsonify
 from flask import Response,json
-from flask_cors import CORS, cross_origin
-from pymongo import MongoClient
+# from flask_cors import CORS, cross_origin
+#from pymongo import MongoClient
 from flask_pymongo import PyMongo
 from keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array
 from tensorflow.keras.preprocessing import image
@@ -14,7 +14,6 @@ from tensorflow.keras.models import Sequential
 import numpy as np
 from keras.models import load_model
 from cv2 import cv2
-import numpy as np
 
 app = Flask(__name__)
 
