@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Finding Lucy</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  -->
     <script src="https://d3js.org/d3.v5.min.js"></script>      
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js"></script>      
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>      
@@ -16,26 +16,7 @@
     <link rel="shortcut icon" href="#">
     
     <style>
-      .right { float: right;  margin: 0 1.5%; width: 30%;}
-      .left { float: left; margin: 0 1.5%; width: 63%;}
-      #box {
-        background-color: #EAC2b1;
-        color:#2C7AAF;
-      }
-      .plot-container{
-        background-color: #EAC2b1;
-        color:#2C7AAF;
-      }
-      /* #log {
-        background-color: #90C6FA;
-        color:#2C7AAF;
-      } */
 
-      .card{
-        background-color: #EAC2b1 !important;
-        color:#2C7AAF;
-      }
-   
     </style>
 
   </head>
@@ -46,7 +27,7 @@
   <nav  class="navbar navbar-expand-lg navbar-light" style="background: #90C6FA">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="nav navbar-nav navbar-left" style = "font-size:xx-large;color:white" href="/">Finding Lucy</a>
+        <a class="nav navbar-nav navbar-left" style = "font-size:xx-large;color:white" href="/">Finding Lucy: an image classifier</a>
       </div>
       <ul class="nav navbar-nav navbar-right" style = "float: right;font-size:medium;color:#2C7AAF;font-weight: bold;">
         <li class="active"><a href="/">Home</a></li>
@@ -57,81 +38,69 @@
       </ul>
     </div>
   </nav>
-
-  <div class="page-header" id="banner">
-    <div class="row">
-      <div class="col-lg-8 col-md-7 col-sm-6">
-        <h1>Cats vs Dogs Image Recognition Server</h1>
-        <h3></h3>
-        <p class="lead">Upload the image and to find out is it a (<b>Cat</b> or <b>Dog</b>)?</p>
+  <div class="container">
+    <!-- Uploads --> 
+    <div class="jumbotron">
+      <div class="row">  
+        <h2 id = "jumbo-text" style ="color: #f8e4db(27, 42, 107);">We are here to find your pet</h2>
       </div>
-    </div>
-    <form action="" method=post enctype=multipart/form-data>
-      <input style ="color:#2C7AAF; border: 2px solid white; border-radius: 2px; margin: 5px;" type=file name=file>
-      <input style ="background-color:#2C7AAF; color: white; border: 2px solid white; border-radius: 2px; margin: 5px;" type=submit value=Upload>
-    </form>
-  </div>
-    
-  <div class="row">
-    <div class="left">
-      <div class="container content">
-        <div class ="col-md-6">
-          <p style="margin-bottom:2cm;"></p>
-          <div class = "col-md-7">
-            <div class="container-fluid" id="box">
-              <div class = "row">
-                <div class="col-lg-4">
-                  <div class="page-header">
-                    <h3 id="tables"><b>Result</b></h3>
-                  </div>
-                  <div class="bs-component">
-                    <table class="table table-hover">
-                      <tr class="table-active">
-                        <th scope="col">Image</th>
-                        <th scope="col">Predict</th>
-                      </tr>
-                      <tr>
-                        <th scope="row"> <img width="224" height="224" src="{{imagesource}}" /> </th>
-                          <td> {{label}} </td>
-                      </tr>
-                    </table> 
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div class="row">
+        <h3>Upload an image of your lost cat or dog</h3>
+      </div> 
+      <div class="row"> 
+        <form action="" method=post enctype=multipart/form-data>
+          <input style ="color:#2C7AAF; border: 2px solid white; border-radius: 2px; margin: 5px;" type=file name=file>
+          <input style ="background-color:#2C7AAF; color: white; border: 2px solid white; border-radius: 2px; margin: 5px;" type=submit value=Upload>
+        </form>
+      </div> 
+    </div>  
+    <!-- Output Section -->
+    <div class="row">
+      <!-- <div class="container content"> -->
+      <div class = "col-md-6">
+        <div class="container-fluid" id="box">
+          <div class="page-header">
+            <h3>Output</h3>
           </div>
+            <table class="table table-hover">
+              <tr class="table-active">
+                <th scope="col">Image</th>
+                <th scope="col">Classification</th>
+              </tr>
+              <tr>
+                <th scope="row"> <img width="224" height="224" src="{{imagesource}}" /> </th>
+                  <td> {{label}} </td>
+              </tr>
+            </table> 
+  
         </div>
       </div>
-    </div>  
-    <div class="right">
+      <!-- </div>  -->
       <div id = "log" class="col-md-6">
         <div class="card w-100">
-          <h2 class="card-text">Cats & Dogs Log Stats</h2>
+          <h3 class="card-text">Cats & Dogs Log Stats</h3>
           <!-- <div width="600" height="500" id = "catsDogsPlot"></div> -->
-          <div class="card-img-bottom" id="catsDogsPlot" width="800" height="500"> </div>
+          <div class="card-img-bottom" id="catsDogsPlot" width="300" height="300"> </div>
         </div>  
       </div>   
     </div>
-  </div>
-  <hr>
- 
-  <div class="container">  
+    <hr>
+    <!-- Gauge section -->
     <div class="row">
       <div class="col-md-6">
         <div class="card w-100">
-          <h2 class="card-text">Cat Classification Model Avg Accuracy</h2>  
+          <h3 class="card-text" style = "text-align: center">Cat Classification Model Avg Accuracy</h3>  
           <div class="card-img-bottom" id="cat_avg_accuracy" width="300" height="300"> </div>
         </div>
       </div>
       <div class="col-md-6">
         <div class="card w-100">
-          <h2 class="card-text">Dog Classification Model Avg Accuracy</h2>  
+          <h3 class="card-text" >Dog Classification Model Avg Accuracy</h3>  
           <div class="card-img-bottom" id="dog_avg_accuracy" width="300" height="300"> </div>
         </div>
       </div>
     </div>
-  </div> 
-  <hr>
+  </div>>
 
   
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
